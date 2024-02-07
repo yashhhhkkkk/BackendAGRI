@@ -45,4 +45,15 @@ public class Category {
 		
 	}
 
+	public void removeProduct(Product p) {
+		products.remove(p);
+		p.setProductCategory(null);
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", categoryName=" + categoryName + ", products=" + products + "]";
+	}
+
 }

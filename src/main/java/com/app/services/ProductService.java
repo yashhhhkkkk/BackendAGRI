@@ -10,5 +10,6 @@ public interface ProductService {
 	List<ProductDTO> getAllProducts();
 	String deleteProduct(Long productId);
 	ProductDTO addProduct(Product product, Long cat_id);
+	ProductDTO updateProduct(Long pid, ProductDTO prod);
 
 }

@@ -46,7 +46,7 @@ public class Product {
 	private int stockQuantity;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id", nullable = false) 
+	@JoinColumn(name = "category_id") 
  	private Category productCategory;
 	
 	@Column(name = "image_url")
