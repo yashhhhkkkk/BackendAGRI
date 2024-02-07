@@ -8,5 +8,6 @@ import com.app.entity.Product;
 public interface ProductService {
 
 	List<ProductDTO> getAllProducts();
+	String deleteProduct(Long productId);
 
 }

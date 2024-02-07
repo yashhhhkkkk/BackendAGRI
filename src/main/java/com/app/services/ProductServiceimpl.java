@@ -25,5 +25,18 @@ public class ProductServiceimpl implements ProductService{
 				                    .map(product -> mapper.map(product,ProductDTO.class)).collect(Collectors.toList());
 		return products ;
 	}
+	
+	@Override
+	public String deleteProduct(Long productId) {
+
+		 if (productDao.existsById(productId)) {
+		        productDao.deleteById(productId);
+		    } else {
+//		        throw new ResourceNotFoundException("Product", "productId", productId);
+		    	return "Product Not Found";
+		    }
+
+		return "Product with productId: " + productId + " deleted successfully !!!";
+	}
 
 }
