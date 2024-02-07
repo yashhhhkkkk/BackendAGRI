@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.DTO.ProductDTO;
+import com.app.dao.CategoryDao;
 import com.app.dao.ProductDao;
+import com.app.entity.Category;
 import com.app.entity.Product;
 
 @Service
@@ -17,6 +19,9 @@ public class ProductServiceimpl implements ProductService{
 	
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
 	
 	@Override
 	public List<ProductDTO> getAllProducts() {
@@ -29,7 +34,8 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public String deleteProduct(Long productId) {
 
-		 if (productDao.existsById(productId)) {
+		 	if (productDao.existsById(productId)) {
+		 		System.out.println("product Found");
 		        productDao.deleteById(productId);
 		    } else {
 //		        throw new ResourceNotFoundException("Product", "productId", productId);
@@ -37,6 +43,19 @@ public class ProductServiceimpl implements ProductService{
 		    }
 
 		return "Product with productId: " + productId + " deleted successfully !!!";
+	}
+
+	@Override
+	public ProductDTO addProduct(Product product, Long cat_id) {
+		
+		Category c = categoryDao.findById(cat_id).orElseThrow();
+		c.addProduct(product);
+		productDao.save(product);
+		
+		return mapper.map(product, ProductDTO.class);
+		
+		
+		
 	}
 
 }

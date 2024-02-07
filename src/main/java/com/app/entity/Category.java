@@ -39,4 +39,10 @@ public class Category {
 			cascade = CascadeType.ALL,  orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<Product> products=new ArrayList<>();
 
+	public void addProduct(Product product) {
+		products.add(product);
+		product.setProductCategory(this);
+		
+	}
+
 }
